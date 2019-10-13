@@ -1,0 +1,27 @@
+Además de los atributos presentes en el diagrama Entidad-Relación, vamos a añadir claves primarias enteras
+que se autoincrementan, tal como se ha sugerido.
+ 
+Actividad 1a (Empresa)
+======================
+ENTIDADES
+---------
+TABLA proveedor			= (id_proveedor(P+), NIF, nombre, direccion)
+TABLA producto			= (id_producto(P+), codigo, nombre, precioUd)
+TABLA cliente			= (id_cliente(P+), DNI, nombre, apellidos, direccion, fNacimiento)
+
+RELACIONES
+----------		  	  (TABLA producto 			   ) + PK de la parte "1", ahora como campo normal
+TABLA proveedor_producto(1:N)	= (id_producto(P+), codigo, nombre, precioUd, id_proveedor)
+
+			   	   PK nueva	     + PK's de ambas partes, ahora como campos normales	
+TABLA cliente_producto(N:M)	= (id_cliente_producto(P+), id_cliente, id_producto)
+
+
+Actividad 1b (Tienda informática)
+=================================
+TABLA proveedor			= (id_proveedor(P+), codigo, nombre, apellidos, direccion, provincia, telefono)
+TABLA producto			= (id_producto(P+), codigo, descripcion, precioUd, numExistencias)
+TABLA cliente			= (id_cliente(P+), codigo, nombre, apellidos, direccion, telefono)
+
+TABLA proveedor_producto(N:M)	= (id_proveedor_producto(P+), id_proveedor, id_producto)
+TABLA cliente_producto(N:M)	= (id_cliente_producto(P+), id_cliente, id_producto, artCompra, fecha)
