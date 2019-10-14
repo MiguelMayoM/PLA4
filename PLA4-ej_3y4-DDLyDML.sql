@@ -21,7 +21,10 @@ CREATE TABLE proveedor (
 	id_proveedor INT AUTO_INCREMENT PRIMARY KEY,
     NIF VARCHAR(9) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    direccion VARCHAR(100) NOT NULL UNIQUE
+    direccion VARCHAR(100) NOT NULL UNIQUE,
+    /*Esto sería para que se pueda repetir NIF pero en otra direccion. Ahora me faltaria
+      condicionar que el nombre que vaya ligado a ese NIF siempre sea el mismo*/
+    CONSTRAINT uc_NIF_direccion UNIQUE (NIF, direccion)
 );
 
 /* -------- */
