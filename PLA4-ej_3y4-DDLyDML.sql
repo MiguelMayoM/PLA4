@@ -23,7 +23,7 @@ CREATE TABLE proveedor (
     nombre VARCHAR(100) NOT NULL,
     direccion VARCHAR(100) NOT NULL UNIQUE,
     /*Esto sería para que se pueda repetir NIF pero en otra direccion. Ahora me faltaria
-      condicionar que el nombre que vaya ligado a ese NIF siempre sea el mismo*/
+	  condicionar que el nombre que vaya ligado a ese NIF siempre sea el mismo*/
     CONSTRAINT uc_NIF_direccion UNIQUE (NIF, direccion)
 );
 
@@ -117,18 +117,32 @@ ON UPDATE CASCADE;
 /* INSERTAR AGLUNOS VALORES */
 /* ------------------------ */
 INSERT INTO proveedor (NIF, nombre, direccion)
-VALUES("A77M", "Nombre1", "Tarragona"),
-      ("B11J", "Nombre2 Apellido2", "Barcelona");
+VALUES("A77M", "Supermercados Miguel", "Tarragona"),
+      ("B11J", "Grandes Almacenes", "Barcelona");
 
 INSERT INTO producto (codigo, nombre, precioUd, id_proveedor)
 VALUES("BEB_HOR","Horchata",5.45, 1),
       ("BEB_TON","Tónica",2.45, 1),
       ("BEB_CER","Cerveza",1.57, 2);
 
+
 /*Uniendo tablas con JOIN para mostrar todos los proveedores, cada uno con todos sus productos*/
 SELECT * FROM proveedor JOIN producto
-  /*Con este, vuelve a repetir la columna id_proveedor al final de la tabla de resultados*/
+  /*Con este, vuelve a repetir la columna id_proveedor al final de la tabla de resultados,
+    pues así se encuentra en la tabla producto*/
   -- ON proveedor.id_proveedor = producto.id_proveedor;
   /*Para el operador "=" y columnas que se llamen iguales en ambas tablas, podemos
 	hacer (así no repite una columna id_proveedor al final de la tabla de resultados):*/
+  USING(id_proveedor);
+
+/*Mostrando sólo algunos campos, como se hace en el pdf de ejemplo. Además, en el SELECT se
+  se añade detrás de cada campo escogido el texto para el encabezamiento de la columna. Así,
+  si sólo pusiera:
+  SELECT proveedor.nombre, producto.nombre, precioUd ...
+  En el resultado que arrojaría la consulta tendría dos columnas con el texto "nombre", ya
+  que ambos campos se llaman así en sus respectivas tablas. Para evitar confusión, se hace:
+  */
+SELECT proveedor.nombre proveedor, producto.nombre producto, precioUd
+  FROM proveedor JOIN producto
+  -- ON proveedor.id_proveedor = producto.id_proveedor;
   USING(id_proveedor);
