@@ -41,7 +41,7 @@ CREATE TABLE producto (
     codigo VARCHAR(15) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     precioUd DECIMAL(10,4) NOT NULL CHECK (precioUd > 0),
-    id_proveedor INT,
+    id_proveedor INT NOT NULL,
     /*Nombre que damos al constraint para referirnos a él si queremos eliminarlo*/
     CONSTRAINT uc_codigo_nombre UNIQUE (codigo, nombre)
 );
