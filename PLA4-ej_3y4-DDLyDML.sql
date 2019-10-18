@@ -117,14 +117,16 @@ ON UPDATE CASCADE;
 /* INSERTAR AGLUNOS VALORES */
 /* ------------------------ */
 INSERT INTO proveedor (NIF, nombre, direccion)
-VALUES("A77M", "Supermercados Miguel", "Tarragona"),
-      ("B11J", "Grandes Almacenes", "Barcelona");
+VALUES ("A77M", "Hiper Mega Ultra Supermercados Miguel", "En una ciudad muy grande"),
+       ("B11J", "Grandes Almacenes donde hay de todo", "");
 
 INSERT INTO producto (codigo, nombre, precioUd, id_proveedor)
-VALUES("BEB_HOR","Horchata",5.45, 1),
-      ("BEB_TON","Tónica",2.45, 1),
-      ("BEB_CER","Cerveza",1.57, 2);
+VALUES ("HOR_COND1-5","Horchata Condensada de 1l para hacer 5l",3.89, 1),
+       ("TON_SCH33","Tónica Schweppes 33cl", 0.75, 1),
+       ("CER_PAU500","Cerveza Paulaner Weissbier 500ml", 1.67, 2);
 
+INSERT INTO cliente (DNI, nombre, apellidos, direccion, fNacimiento)
+VALUES ("45F", "Miguel", "", "", 01/01/1980);
 
 /*Uniendo tablas con JOIN para mostrar todos los proveedores, cada uno con todos sus productos*/
 SELECT * FROM proveedor JOIN producto
