@@ -126,7 +126,7 @@ VALUES ("HOR_COND1-5","Horchata Condensada de 1l para hacer 5l",3.89, 1),
        ("CER_PAU500","Cerveza Paulaner Weissbier 500ml", 1.67, 2);
 
 INSERT INTO cliente (DNI, nombre, apellidos, direccion, fNacimiento)
-VALUES ("45F", "Miguel", "", "", 01/01/1980);
+VALUES ("45F", "Miguel", "", "", "1980-01-01");
 
 /*Uniendo tablas con JOIN para mostrar todos los proveedores, cada uno con todos sus productos*/
 SELECT * FROM proveedor JOIN producto
